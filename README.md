@@ -13,3 +13,10 @@ brew install ffmpeg
 
 ## 📦 2. Run the Project
 streamlit run app.py
+
+
+### 3. Integration with Cerebras
+pip install --upgrade cerebras_cloud_sdk
+export CEREBRAS_API_KEY="your-cerebras-key"
+streamlit run new-app.py
+
