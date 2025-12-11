@@ -8,58 +8,253 @@ from faster_whisper import WhisperModel
 from agent_manager import get_agent_manager, DomainAgent
 
 # ---------------------------
-# Page Config & Custom Styling
+# Page Config
 # ---------------------------
 st.set_page_config(
-    page_title="Voice Assistant",
-    page_icon="🎙️",
-    layout="centered"
+    page_title="SnowVoice",
+    page_icon="❄️",
+    layout="centered",
+    initial_sidebar_state="collapsed"
 )
 
-# Custom CSS
+# ---------------------------
+# Premium Dark Theme CSS
+# ---------------------------
 st.markdown("""
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    * {
+        font-family: 'Inter', sans-serif;
+    }
+    
     .stApp {
-        background: linear-gradient(180deg, #0f1419 0%, #1a1f2e 50%, #0d1117 100%);
+        background: linear-gradient(180deg, #0a0c10 0%, #0d1117 50%, #0a0c10 100%);
     }
     
-    .main-header {
-        text-align: center;
-        padding: 1.5rem 0;
-        background: linear-gradient(90deg, #29b5e8 0%, #7dd3fc 50%, #29b5e8 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-size: 2.2rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-    }
-    
-    .sub-header {
-        text-align: center;
-        color: #94a3b8;
-        font-size: 1rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .agent-badge {
-        display: inline-flex;
+    /* Product branding - Top bar */
+    .brand-topbar {
+        display: flex;
         align-items: center;
-        gap: 0.5rem;
-        background: rgba(41, 181, 232, 0.15);
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        color: #7dd3fc;
+        justify-content: flex-start;
+        padding: 0.5rem 0;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    
+    .brand-icon {
+        height: 32px;
+        width: auto;
+    }
+    
+    /* Hero section */
+    .brand-hero {
+        text-align: center;
+        padding: 2rem 0;
         margin-bottom: 1rem;
     }
     
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
+    .brand-name {
+        font-size: 3rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #29B5E8 0%, #71C4EF 50%, #29B5E8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.75rem;
+    }
     
-    .stTextArea textarea {
+    .brand-tagline {
+        color: rgba(255,255,255,0.5);
+        font-size: 1.1rem;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+    }
+    
+    .brand-tagline span {
+        color: #29B5E8;
+        font-weight: 500;
+    }
+    
+    /* Hide Streamlit defaults */
+    #MainMenu, footer, header {visibility: hidden;}
+    .stDeployButton {display: none;}
+    
+    /* Main container */
+    .main-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+    
+    /* Agent selector card */
+    .agent-card {
+        background: linear-gradient(135deg, rgba(30,30,40,0.9) 0%, rgba(20,20,30,0.95) 100%);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 16px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .agent-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .agent-icon {
+        font-size: 2rem;
+    }
+    
+    .agent-name {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #fff;
+        margin: 0;
+    }
+    
+    .agent-desc {
+        color: rgba(255,255,255,0.5);
+        font-size: 0.85rem;
+        margin: 0;
+    }
+    
+    /* Mic button container */
+    .mic-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 0;
+    }
+    
+    .mic-ring {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 
+            0 0 0 1px rgba(255,255,255,0.1),
+            0 20px 40px rgba(0,0,0,0.4),
+            inset 0 1px 0 rgba(255,255,255,0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .mic-ring:hover {
+        transform: scale(1.05);
+        box-shadow: 
+            0 0 0 1px rgba(99,102,241,0.3),
+            0 0 30px rgba(99,102,241,0.2),
+            0 20px 40px rgba(0,0,0,0.4);
+    }
+    
+    .mic-hint {
+        color: rgba(255,255,255,0.4);
+        font-size: 0.8rem;
+        margin-top: 1rem;
+        text-align: center;
+    }
+    
+    /* Result card */
+    .result-card {
+        background: linear-gradient(135deg, rgba(30,30,40,0.9) 0%, rgba(20,20,30,0.95) 100%);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 16px;
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    
+    .result-label {
+        color: rgba(255,255,255,0.4);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.5rem;
+    }
+    
+    .result-question {
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    
+    .result-answer {
+        color: rgba(255,255,255,0.85);
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+    
+    /* Correction indicator */
+    .correction-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        background: rgba(99,102,241,0.15);
+        color: #818cf8;
+        padding: 0.25rem 0.6rem;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* View files button */
+    .view-files-btn {
+        color: rgba(255,255,255,0.4);
+        font-size: 0.75rem;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+    
+    .view-files-btn:hover {
+        color: rgba(255,255,255,0.7);
+    }
+    
+    /* Streamlit overrides */
+    .stSelectbox > div > div {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .stButton > button {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.5rem 1.5rem;
+        font-weight: 500;
+        transition: all 0.2s;
+    }
+    
+    .stButton > button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(99,102,241,0.4);
+    }
+    
+    .stTextInput > div > div > input {
         background: rgba(255,255,255,0.05);
         border: 1px solid rgba(255,255,255,0.1);
         color: white;
+    }
+    
+    /* Audio player styling */
+    audio {
+        width: 100%;
+        height: 40px;
+        border-radius: 8px;
+    }
+    
+    /* Expander styling */
+    .streamlit-expanderHeader {
+        background: rgba(255,255,255,0.03);
+        border-radius: 8px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -77,263 +272,242 @@ agent_manager = get_agent_manager()
 # ---------------------------
 # Session State
 # ---------------------------
-if "pipeline_stage" not in st.session_state:
-    st.session_state.pipeline_stage = "ready"
-if "raw_transcript" not in st.session_state:
-    st.session_state.raw_transcript = ""
-if "enhanced_transcript" not in st.session_state:
-    st.session_state.enhanced_transcript = ""
-if "answer" not in st.session_state:
+defaults = {
+    "pipeline_stage": "ready",
+    "raw_transcript": "",
+    "enhanced_transcript": "",
+    "answer": "",
+    "last_audio_len": 0,
+    "show_files": False,
+    "advanced_mode": True
+}
+for key, val in defaults.items():
+    if key not in st.session_state:
+        st.session_state[key] = val
+
+# ---------------------------
+# Get Agents
+# ---------------------------
+agents = agent_manager.list_agents()
+
+if not agents:
+    st.error("No agents found. Please add agents to the `agents/` directory.")
+    st.stop()
+
+# ---------------------------
+# Product Branding
+# ---------------------------
+st.markdown("""
+<div class="brand-topbar">
+    <img class="brand-icon" src="https://www.snowflake.com/wp-content/themes/snowflake/assets/img/logo-blue.svg" alt="Snowflake" onerror="this.src='https://companieslogo.com/img/orig/SNOW-35164165.png'">
+</div>
+<div class="brand-hero">
+    <div class="brand-name">SnowVoice</div>
+    <p class="brand-tagline">Real Voice Intelligence, Powered by <span>Your Snowflake Data</span></p>
+</div>
+""", unsafe_allow_html=True)
+
+# ---------------------------
+# Agent Selection (Top)
+# ---------------------------
+agent_options = {f"{a.icon} {a.name}": a for a in agents}
+col1, col2 = st.columns([3, 1])
+
+with col1:
+    selected_name = st.selectbox(
+        "Agent",
+        options=list(agent_options.keys()),
+        label_visibility="collapsed"
+    )
+
+with col2:
+    if st.button("📄 View", use_container_width=True, help="View agent files"):
+        st.session_state.show_files = not st.session_state.show_files
+
+selected_agent = agent_options[selected_name]
+
+# Show agent files if toggled
+if st.session_state.show_files:
+    with st.expander(f"📁 {selected_agent.name} Agent Files", expanded=True):
+        tab1, tab2 = st.tabs(["📋 Terms (YAML)", "📖 Knowledge (MD)"])
+        
+        with tab1:
+            terms_content = selected_agent.load_terms()
+            st.code(terms_content[:3000] + ("..." if len(terms_content) > 3000 else ""), language="yaml")
+        
+        with tab2:
+            knowledge_content = selected_agent.load_knowledge()
+            st.markdown(knowledge_content[:5000] + ("..." if len(knowledge_content) > 5000 else ""))
+
+# ---------------------------
+# Agent Header
+# ---------------------------
+st.markdown(f"""
+<div class="agent-card">
+    <div class="agent-header">
+        <span class="agent-icon">{selected_agent.icon}</span>
+        <div>
+            <h2 class="agent-name">{selected_agent.name}</h2>
+            <p class="agent-desc">{selected_agent.description}</p>
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+# ---------------------------
+# Settings Row
+# ---------------------------
+col1, col2 = st.columns([1, 2])
+with col2:
+    st.session_state.advanced_mode = st.toggle("✨ Enhance with Snowflake Data", value=st.session_state.advanced_mode, 
+                                                help="AI corrects domain terminology using your semantic model")
+
+# ---------------------------
+# Mic Button
+# ---------------------------
+st.markdown("""
+<style>
+    /* Style the audio recorder */
+    .stAudioRecorder {
+        display: flex;
+        justify-content: center;
+    }
+    
+    /* Main mic button */
+    .stAudioRecorder > div > button:first-child {
+        width: 100px !important;
+        height: 100px !important;
+        border-radius: 50% !important;
+        background: linear-gradient(135deg, #1e3a5f 0%, #29B5E8 100%) !important;
+        border: 3px solid rgba(41, 181, 232, 0.3) !important;
+        box-shadow: 0 0 30px rgba(41, 181, 232, 0.2), inset 0 0 20px rgba(0,0,0,0.2) !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .stAudioRecorder > div > button:first-child:hover {
+        transform: scale(1.05) !important;
+        box-shadow: 0 0 40px rgba(41, 181, 232, 0.4), inset 0 0 20px rgba(0,0,0,0.2) !important;
+    }
+    
+    .stAudioRecorder > div > button:first-child svg {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    /* Hide the save/reset buttons - auto-process instead */
+    .stAudioRecorder > div > button:nth-child(2),
+    .stAudioRecorder > div > button:nth-child(3),
+    .stAudioRecorder > div > div:has(button) button:not(:first-child) {
+        display: none !important;
+    }
+    
+    /* Hide any extra controls after recording */
+    .stAudioRecorder > div > div {
+        display: none !important;
+    }
+    
+    /* Keep only the main button visible */
+    .stAudioRecorder > div > button:first-of-type {
+        display: flex !important;
+    }
+</style>
+<div class="mic-container">
+""", unsafe_allow_html=True)
+
+audio = audiorecorder("", "", show_visualizer=False, key="main_recorder")
+
+st.markdown('</div>', unsafe_allow_html=True)
+
+# ---------------------------
+# Process Audio
+# ---------------------------
+if len(audio) > 0 and len(audio) != st.session_state.last_audio_len:
+    st.session_state.last_audio_len = len(audio)
+    st.session_state.pipeline_stage = "processing"
     st.session_state.answer = ""
-if "last_audio_len" not in st.session_state:
-    st.session_state.last_audio_len = 0
-if "selected_agent" not in st.session_state:
-    st.session_state.selected_agent = None
-if "show_create_agent" not in st.session_state:
-    st.session_state.show_create_agent = False
+    
+    # Compact audio player
+    st.audio(audio.export().read(), format="audio/wav")
+    
+    try:
+        domain_agent = DomainAgent(selected_agent)
+    except Exception as e:
+        st.error(f"Agent error: {e}")
+        st.stop()
+    
+    # Processing
+    with st.spinner(""):
+        # Transcribe
+        wav_bytes_io = io.BytesIO()
+        audio.export(wav_bytes_io, format="wav")
+        wav_bytes_io.seek(0)
+        with open("temp.wav", "wb") as f:
+            f.write(wav_bytes_io.read())
+        
+        segments, _ = model.transcribe("temp.wav")
+        raw_text = " ".join([seg.text for seg in segments]).strip()
+        st.session_state.raw_transcript = raw_text
+        
+        # Enhance if enabled
+        if st.session_state.advanced_mode:
+            enhanced = domain_agent.correct_transcript(raw_text)
+            st.session_state.enhanced_transcript = enhanced
+            final_question = enhanced
+        else:
+            st.session_state.enhanced_transcript = raw_text
+            final_question = raw_text
+        
+        # Get answer
+        answer = domain_agent.answer(final_question)
+        st.session_state.answer = answer
+        st.session_state.pipeline_stage = "complete"
 
 # ---------------------------
-# Sidebar - Agent Selection & Creation
+# Display Results
 # ---------------------------
-with st.sidebar:
-    st.markdown("### 🤖 Agent Selection")
+if st.session_state.pipeline_stage == "complete" and st.session_state.answer:
     
-    # Get available agents
-    agents = agent_manager.list_agents()
+    # Show correction if made
+    was_corrected = (st.session_state.advanced_mode and 
+                     st.session_state.enhanced_transcript != st.session_state.raw_transcript)
     
-    if agents:
-        agent_options = {f"{a.icon} {a.name}": a for a in agents}
-        selected_name = st.selectbox(
-            "Choose an agent:",
-            options=list(agent_options.keys()),
-            index=0
-        )
-        selected_agent_config = agent_options[selected_name]
-        st.session_state.selected_agent = selected_agent_config
-        
-        # Show agent info
-        st.caption(selected_agent_config.description)
-    else:
-        st.warning("No agents found. Create one below!")
-        selected_agent_config = None
+    st.markdown('<div class="result-card">', unsafe_allow_html=True)
     
-    st.markdown("---")
+    st.markdown('<p class="result-label">Your Question</p>', unsafe_allow_html=True)
     
-    # Create Agent Section
-    if st.button("➕ Create New Agent", use_container_width=True):
-        st.session_state.show_create_agent = not st.session_state.show_create_agent
+    if was_corrected:
+        st.markdown('<span class="correction-badge">✨ Enhanced</span>', unsafe_allow_html=True)
+        st.caption(f"~{st.session_state.raw_transcript}~")
     
-    if st.session_state.show_create_agent:
-        st.markdown("### 📝 Create Agent")
-        
-        new_agent_name = st.text_input("Agent Name", placeholder="e.g., My Domain")
-        new_agent_icon = st.text_input("Icon (emoji)", value="🤖", max_chars=2)
-        new_agent_desc = st.text_input("Description", placeholder="Expert for...")
-        
-        new_agent_terms = st.text_area(
-            "Terms YAML",
-            height=150,
-            placeholder="""domain_terms:
-  - Term1
-  - Term2
-acronyms:
-  - ABC (Full Name)""",
-            help="YAML format: list of domain-specific terms for speech correction"
-        )
-        
-        new_agent_knowledge = st.text_area(
-            "Knowledge Base (Markdown)",
-            height=150,
-            placeholder="""# FAQ
-
-Q: What is X?
-A: X is...""",
-            help="Markdown FAQ that the agent uses to answer questions"
-        )
-        
-        if st.button("✅ Create Agent", type="primary", use_container_width=True):
-            if new_agent_name and new_agent_terms and new_agent_knowledge:
-                # Create agent ID from name
-                agent_id = re.sub(r'[^a-z0-9]+', '_', new_agent_name.lower()).strip('_')
-                
-                try:
-                    agent_manager.create_agent(
-                        agent_id=agent_id,
-                        name=new_agent_name,
-                        description=new_agent_desc or f"Expert for {new_agent_name}",
-                        icon=new_agent_icon,
-                        terms_content=new_agent_terms,
-                        knowledge_content=new_agent_knowledge
-                    )
-                    st.success(f"Created agent: {new_agent_icon} {new_agent_name}")
-                    st.session_state.show_create_agent = False
-                    time.sleep(1)
-                    st.rerun()
-                except Exception as e:
-                    st.error(f"Error creating agent: {e}")
-            else:
-                st.warning("Please fill in all required fields")
-    
-    st.markdown("---")
-    
-    # Settings
-    st.markdown("### ⚙️ Settings")
-    advanced_mode = st.toggle("✨ Query Enhancement", value=True,
-                               help="AI enhances your question with proper terminology")
-    
-    st.markdown("---")
-    
-    # Pipeline status
-    st.markdown("### 📊 Pipeline")
-    stages = [
-        ("🎙️", "Record", st.session_state.pipeline_stage in ["transcribing", "enhancing", "answering", "complete"]),
-        ("📝", "Transcribe", st.session_state.pipeline_stage in ["enhancing", "answering", "complete"]),
-        ("✨", "Enhance", st.session_state.pipeline_stage in ["answering", "complete"] and advanced_mode),
-        ("💬", "Answer", st.session_state.pipeline_stage == "complete"),
-    ]
-    for icon, label, complete in stages:
-        if label == "Enhance" and not advanced_mode:
-            continue
-        status = "✅" if complete else "○"
-        st.markdown(f"{status} {icon} {label}")
-
-# ---------------------------
-# Main Content
-# ---------------------------
-if selected_agent_config:
-    # Header with agent info
-    st.markdown(f'<h1 class="main-header">{selected_agent_config.icon} {selected_agent_config.name} Voice Assistant</h1>', 
+    st.markdown(f'<p class="result-question">{st.session_state.enhanced_transcript}</p>', 
                 unsafe_allow_html=True)
-    st.markdown(f'<p class="sub-header">{selected_agent_config.description}</p>', unsafe_allow_html=True)
     
-    # Recording section
-    col1, col2, col3 = st.columns([1, 2, 1])
+    st.markdown('<p class="result-label">Answer</p>', unsafe_allow_html=True)
+    st.markdown(st.session_state.answer)
+    
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Follow-up
+    st.markdown("")
+    col1, col2 = st.columns([4, 1])
+    with col1:
+        followup = st.text_input("Follow-up", placeholder="Ask a follow-up...", 
+                                  label_visibility="collapsed")
     with col2:
-        st.markdown(f'<div class="agent-badge">🎤 Voice-Powered • AI-Enhanced</div>', unsafe_allow_html=True)
-        
-        audio = audiorecorder(
-            start_prompt="🔴 Hold to Record",
-            stop_prompt="⏹️ Release to Process",
-            show_visualizer=True
-        )
+        if st.button("→", use_container_width=True):
+            if followup:
+                with st.spinner(""):
+                    domain_agent = DomainAgent(selected_agent)
+                    if st.session_state.advanced_mode:
+                        followup = domain_agent.correct_transcript(followup)
+                    answer = domain_agent.answer(followup)
+                    st.session_state.raw_transcript = followup
+                    st.session_state.enhanced_transcript = followup
+                    st.session_state.answer = answer
+                    st.rerun()
     
-    # Auto-process when audio is captured
-    if len(audio) > 0 and len(audio) != st.session_state.last_audio_len:
-        st.session_state.last_audio_len = len(audio)
-        st.session_state.pipeline_stage = "transcribing"
-        st.session_state.answer = ""
-        
-        # Show audio player
-        st.audio(audio.export().read(), format="audio/wav")
-        
-        # Initialize domain agent
-        try:
-            domain_agent = DomainAgent(selected_agent_config)
-        except Exception as e:
-            st.error(f"Error initializing agent: {e}")
-            st.stop()
-        
-        with st.status("🎯 Processing your question...", expanded=True) as status:
-            # Step 1: Transcribe
-            st.write("📝 **Transcribing audio...**")
-            
-            wav_bytes_io = io.BytesIO()
-            audio.export(wav_bytes_io, format="wav")
-            wav_bytes_io.seek(0)
-            with open("temp.wav", "wb") as f:
-                f.write(wav_bytes_io.read())
-            
-            segments, info = model.transcribe("temp.wav")
-            raw_text = " ".join([seg.text for seg in segments]).strip()
-            st.session_state.raw_transcript = raw_text
-            
-            st.success(f"**Raw transcript:** {raw_text}")
-            time.sleep(0.3)
-            
-            # Step 2: Enhance (if advanced mode)
-            if advanced_mode:
-                st.session_state.pipeline_stage = "enhancing"
-                st.write("✨ **Enhancing with domain terminology...**")
-                
-                enhanced = domain_agent.correct_transcript(raw_text)
-                st.session_state.enhanced_transcript = enhanced
-                
-                if enhanced != raw_text:
-                    st.info(f"**Enhanced:** {enhanced}")
-                else:
-                    st.info("No enhancements needed")
-                time.sleep(0.3)
-                
-                final_question = enhanced
-            else:
-                st.session_state.enhanced_transcript = raw_text
-                final_question = raw_text
-            
-            # Step 3: Get Answer
-            st.session_state.pipeline_stage = "answering"
-            st.write(f"{selected_agent_config.icon} **Consulting knowledge base...**")
-            
-            answer = domain_agent.answer(final_question)
-            st.session_state.answer = answer
-            st.session_state.pipeline_stage = "complete"
-            
-            status.update(label="✅ Complete!", state="complete", expanded=False)
-    
-    # Display results
-    if st.session_state.pipeline_stage == "complete" and st.session_state.answer:
-        st.markdown("---")
-        
-        # Question summary
-        col1, col2 = st.columns([1, 4])
-        with col1:
-            st.markdown("**🎤 You asked:**")
-        with col2:
-            if advanced_mode and st.session_state.enhanced_transcript != st.session_state.raw_transcript:
-                st.markdown(f"~~{st.session_state.raw_transcript}~~")
-                st.markdown(f"**{st.session_state.enhanced_transcript}**")
-            else:
-                st.markdown(f"**{st.session_state.raw_transcript}**")
-        
-        st.markdown("---")
-        
-        # Answer
-        st.markdown("### 💬 Answer")
-        st.markdown(st.session_state.answer)
-        
-        # Follow-up
-        st.markdown("---")
-        st.markdown("### 🔄 Follow-up")
-        
-        col1, col2 = st.columns([3, 1])
-        with col1:
-            followup = st.text_input("Type a follow-up question:",
-                                      placeholder="e.g., Tell me more about...",
-                                      label_visibility="collapsed")
-        with col2:
-            if st.button("Ask →", type="primary", use_container_width=True):
-                if followup:
-                    with st.spinner("Getting answer..."):
-                        domain_agent = DomainAgent(selected_agent_config)
-                        if advanced_mode:
-                            followup = domain_agent.correct_transcript(followup)
-                        answer = domain_agent.answer(followup)
-                        st.session_state.raw_transcript = followup
-                        st.session_state.enhanced_transcript = followup
-                        st.session_state.answer = answer
-                        st.rerun()
-        
-        # Reset button
-        st.markdown("---")
-        if st.button("🔄 Ask Another Question", use_container_width=True):
-            st.session_state.pipeline_stage = "ready"
-            st.session_state.raw_transcript = ""
-            st.session_state.enhanced_transcript = ""
-            st.session_state.answer = ""
-            st.session_state.last_audio_len = 0
-            st.rerun()
-
-else:
-    st.markdown('<h1 class="main-header">🎙️ Voice Assistant</h1>', unsafe_allow_html=True)
-    st.markdown('<p class="sub-header">Create an agent to get started</p>', unsafe_allow_html=True)
-    
-    st.info("👈 Click **Create New Agent** in the sidebar to create your first agent with a terms YAML and knowledge base.")
+    # Reset
+    if st.button("New Question", use_container_width=True):
+        for key in ["pipeline_stage", "raw_transcript", "enhanced_transcript", "answer", "last_audio_len"]:
+            st.session_state[key] = defaults[key]
+        st.rerun()
