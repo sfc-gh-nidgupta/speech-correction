@@ -1,0 +1,181 @@
+core_platform_objects:
+  - Account
+  - Organization
+  - Region
+  - Virtual warehouse
+  - Database
+  - Schema
+  - Table (permanent; transient; temporary)
+  - View (standard; secure)
+  - Materialized view
+  - Sequence
+  - Stage (internal; external)
+  - File format
+  - Pipe
+  - Stream
+  - Task
+  - Dynamic table
+  - External table
+  - Apache Iceberg tables (Snowflake-managed; externally managed)
+  - Hybrid tables (Unistore)
+  - Tag
+  - Masking policy
+  - Row access policy
+
+data_engineering_ingestion:
+  - COPY INTO
+  - Snowpipe (auto-ingest)
+  - Snowpipe Streaming
+  - Streams and Tasks
+  - File staging (S3; Azure Blob; GCS)
+  - Semi-structured data (VARIANT; OBJECT; ARRAY)
+  - File formats (JSON; Parquet; Avro; ORC; XML)
+  - Geospatial data types (GEOGRAPHY; GEOMETRY)
+  - Search Optimization Service (SOS)
+  - Query Acceleration Service (QAS)
+
+performance_storage_optimization:
+  - Micro-partitions
+  - Clustering (clustering depth)
+  - Pruning
+  - Result cache
+  - Metadata cache
+  - Warehouse sizing and scaling policy (auto-suspend/resume; multi-cluster)
+  - Resource monitors
+  - Time Travel
+  - Fail-safe
+  - Zero-Copy Cloning
+
+governance_security:
+  - RBAC (role-based access control)
+  - System roles (ACCOUNTADMIN; SYSADMIN; SECURITYADMIN; USERADMIN; ORGADMIN)
+  - Privileges and object ownership
+  - Network policy
+  - MFA/SSO (SAML; OIDC)
+  - OAuth (native; external)
+  - Key pair authentication
+  - Customer-Managed Keys (CMK) / Tri-Secret Secure
+  - Tag-based masking
+  - Data Classification
+
+data_sharing_collaboration:
+  - Secure Data Sharing
+  - Provider / Consumer
+  - Reader accounts
+  - Snowflake Marketplace (listings; private listings)
+  - Database replication
+  - Failover / Failback
+  - Cross-region / Cross-cloud replication (Snowgrid)
+  - Data Clean Rooms
+  - Resharing
+
+ai_ml_and_developer_ecosystem:
+  - Snowpark (Python; Java; Scala)
+  - Snowpark Container Services (compute pools; services)
+  - Snowflake Notebooks
+  - Snowflake AI & ML Studio
+  - Snowflake Cortex AI
+  - Cortex functions (COMPLETE; SUMMARIZE; TRANSLATE; SENTIMENT; CLASSIFY; EXTRACT_ANSWER)
+  - Vector search / embeddings (EMBED_768; EMBED_1024)
+  - Snowflake Arctic
+  - Open Catalog (based on Apache Polaris)
+  - Streamlit in Snowflake
+  - Native Apps Framework
+  - Snowflake CLI
+  - SnowSQL
+  - Connectors (JDBC; ODBC; Python; Spark; Kafka; Node.js; .NET; Go)
+  - SQL API
+
+monitoring_metadata_tooling:
+  - ACCOUNT_USAGE
+  - INFORMATION_SCHEMA
+  - Query history
+  - Access history
+  - Resource usage
+  - Query profile
+  - Snowsight (worksheets; dashboards; notebooks; Streamlit apps)
+
+internal_glossaries:
+  - Balto Design System glossary
+  - Performance terms glossary
+
+editions_deployment_architecture:
+  - Standard edition
+  - Enterprise edition
+  - Business Critical edition
+  - Virtual Private Snowflake (VPS)
+  - Gov/regulated deployments
+  - AWS regions
+  - Azure regions
+  - GCP regions
+  - Snowgrid
+  - Account locator / account URL
+  - Organization-level admin (ORGADMIN)
+
+pricing_usage:
+  - Credits
+  - On-demand vs capacity usage
+  - Auto-suspend / Auto-resume
+  - Resource monitors
+  - Marketplace billing
+
+new_ai_product_terminology:
+  brand_platforms:
+    - Snowflake Cortex AI
+    - Snowflake AI & ML Studio
+    - Snowflake Intelligence
+    - Snowflake Copilot
+  core_ai_capabilities:
+    - Cortex Analyst
+    - Cortex Agents
+    - Cortex AISQL
+    - Cortex Search
+    - Cortex Knowledge Extensions
+    - Cortex Fine-Tuning
+    - Cortex Guard
+  ai_sql_functions:
+    - COMPLETE
+    - SUMMARIZE
+    - TRANSLATE
+    - SENTIMENT
+    - CLASSIFY
+    - EXTRACT_ANSWER
+    - EXTRACT
+    - PARSE_DOCUMENT
+    - TRANSCRIBE
+    - EMBED
+    - EMBED_TEXT_768
+    - EMBED_TEXT_1024
+    - AI_AGG
+    - SUMMARIZE_AGG
+    - AI_FILTER (preview/roadmap)
+    - AI_SIMILARITY (preview/roadmap)
+    - AI_CLUSTER (preview/roadmap)
+  notebooks_runtime:
+    - Snowflake Notebooks
+    - Container Runtime
+    - Warehouse Runtime
+  governance_quality:
+    - AI observability
+
+snova_cortex_code_terminology:
+  names_positioning:
+    - Snova (internal codename)
+    - Cortex Code CLI (formerly Snova)
+    - Cortex Code in Snowsight
+  accounts_connections_architecture:
+    - Inference account (e.g., Snowhouse)
+    - Active account
+    - PAT-based connections (config in ~/.snowflake/config.toml or connections.toml)
+    - cortex -c <connection_name>
+  agent_features_modes_controls:
+    - Planning mode (/plan; /plan_off)
+    - Review mode (/review)
+    - Slash commands (/sql; /sh; /feedback)
+    - Skills
+    - Model Context Protocol (MCP)
+    - Session continuity (cortex --continue; --resume)
+    - Permissions controls (--dangerously-allow-all-tool-calls)
+  status_enablement:
+    - Private Preview (PrPr)
+    - Internal links (go/cortex-cli; [go/snova](https://app.glean.com/go/snova))

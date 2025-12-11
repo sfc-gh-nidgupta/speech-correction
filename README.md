@@ -9,6 +9,7 @@ python3 -m venv .venv
 source .venv/bin/activate      # macOS/Linux
 
 pip install streamlit streamlit-audiorecorder pydub faster-whisper
+pip install pyyaml
 brew install ffmpeg
 
 ## 📦 2. Run the Project
