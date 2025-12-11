@@ -1,0 +1,6 @@
+name: Warner Music Group
+description: Music industry research assistant for WMG artists, labels, and trends
+icon: 🎵
+terms_file: terms.yaml
+knowledge_file: knowledge.md
+

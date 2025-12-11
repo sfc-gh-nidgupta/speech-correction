@@ -1,0 +1,278 @@
+# Warner Music Group Terminology & Artists
+# For music/artist pattern research
+
+wmg_labels:
+  atlantic_records:
+    - Atlantic Records
+    - Atlantic Recording Corporation
+    - Big Beat Records
+    - Fueled by Ramen
+    - Roadrunner Records
+    - Elektra Records
+    - 300 Entertainment
+    - Artist Partner Group (APG)
+  
+  warner_records:
+    - Warner Records
+    - Warner Bros. Records
+    - Reprise Records
+    - Sire Records
+    - Nonesuch Records
+    - Rhino Entertainment
+  
+  warner_music_nashville:
+    - Warner Music Nashville
+    - Warner Nashville
+    - Asylum Records (country)
+    - Atlantic Nashville
+  
+  parlophone:
+    - Parlophone Records
+    - Parlophone UK
+    - Chrysalis Records
+    - Ensign Records
+  
+  international_labels:
+    - Warner Music Germany
+    - Warner Music France
+    - Warner Music Japan
+    - Warner Music Latin
+    - Warner Music Australia
+    - Warner Music UK
+
+wmg_major_artists:
+  pop_mainstream:
+    - Ed Sheeran
+    - Bruno Mars
+    - Dua Lipa
+    - Cardi B
+    - Lizzo
+    - Charlie Puth
+    - Bebe Rexha
+    - Ava Max
+    - Anne-Marie
+    - Charli XCX
+    - Kim Petras
+    - Zara Larsson
+    
+  rock_alternative:
+    - Coldplay
+    - Muse
+    - Green Day
+    - Panic! At The Disco
+    - Twenty One Pilots
+    - Paramore
+    - Weezer
+    - The Black Keys
+    - Royal Blood
+    - Greta Van Fleet
+    - Trivium
+    - Slipknot
+    
+  hip_hop_rap:
+    - Cardi B
+    - Lil Uzi Vert
+    - Roddy Ricch
+    - Jack Harlow
+    - Gunna
+    - Kodak Black
+    - Gucci Mane
+    - Meek Mill
+    - Wiz Khalifa
+    - Burna Boy
+    - Saweetie
+    
+  r_and_b_soul:
+    - Bruno Mars
+    - Anderson .Paak
+    - Silk Sonic
+    - Kehlani
+    - Ari Lennox
+    - Daniel Caesar
+    - Jazmine Sullivan
+    - Tank
+    
+  country:
+    - Blake Shelton
+    - Dan + Shay
+    - Brett Eldredge
+    - Cole Swindell
+    - Ashley McBryde
+    - Gabby Barrett
+    - Michael Ray
+    
+  electronic_dance:
+    - David Guetta
+    - Kygo
+    - Clean Bandit
+    - Galantis
+    - Regard
+    - Joel Corry
+    - James Hype
+    
+  latin:
+    - Anitta
+    - Pablo Alborán
+    - Myke Towers
+    - Rauw Alejandro
+    - Manuel Turizo
+    - Feid
+
+music_industry_terms:
+  business_terms:
+    - A&R (Artists and Repertoire)
+    - 360 deal
+    - Advance
+    - Royalties
+    - Publishing rights
+    - Master recording
+    - Sync licensing
+    - Mechanical royalties
+    - Performance royalties
+    - Distribution deal
+    - Label services
+    - Joint venture
+    - Imprint
+    - Catalog
+    - Back catalog
+    - Frontline releases
+    
+  streaming_digital:
+    - Streaming royalties
+    - DSP (Digital Service Provider)
+    - Spotify
+    - Apple Music
+    - Amazon Music
+    - YouTube Music
+    - Tidal
+    - Deezer
+    - Pandora
+    - SoundCloud
+    - Audiomack
+    - Playlist placement
+    - Algorithmic playlists
+    - Editorial playlists
+    - Release radar
+    - Discover Weekly
+    
+  chart_metrics:
+    - Billboard Hot 100
+    - Billboard 200
+    - UK Singles Chart
+    - UK Albums Chart
+    - Global 200
+    - Streaming equivalents
+    - Track equivalent albums (TEA)
+    - Album equivalent units
+    - First week sales
+    - Certifications (Gold, Platinum, Diamond)
+    - RIAA certification
+    - BPI certification
+    
+  marketing_promotion:
+    - Single release
+    - Album rollout
+    - Pre-save campaign
+    - Music video
+    - Lyric video
+    - Visualizer
+    - TikTok campaign
+    - Instagram Reels
+    - YouTube Shorts
+    - Radio adds
+    - Hot Adult Contemporary (HAC)
+    - Contemporary Hit Radio (CHR)
+    - Urban radio
+    - Country radio
+    - Press release
+    - EPK (Electronic Press Kit)
+    
+  production_recording:
+    - Producer
+    - Executive producer
+    - Co-writer
+    - Featured artist
+    - Sample clearance
+    - Interpolation
+    - Beat
+    - Hook
+    - Bridge
+    - Verse
+    - Chorus
+    - Pre-chorus
+    - Outro
+    - Intro
+    - Drop
+    - BPM (Beats Per Minute)
+    - Key signature
+    - Mixing
+    - Mastering
+    - Stems
+    
+  touring_live:
+    - Tour
+    - Headlining tour
+    - Arena tour
+    - Stadium tour
+    - Festival circuit
+    - Opening act
+    - Support slot
+    - Residency
+    - Setlist
+    - Merch
+    - VIP packages
+    - Meet and greet
+    - Live Nation
+    - AEG Presents
+
+genres_subgenres:
+  - Pop
+  - Rock
+  - Hip-Hop
+  - R&B
+  - Country
+  - Electronic/EDM
+  - Latin
+  - K-Pop
+  - J-Pop
+  - Indie
+  - Alternative
+  - Metal
+  - Punk
+  - Folk
+  - Jazz
+  - Classical
+  - Reggaeton
+  - Afrobeats
+  - Dancehall
+  - Gospel
+  - Soul
+  - Funk
+  - Blues
+  - Trap
+  - Drill
+  - House
+  - Techno
+  - Dubstep
+  - Lo-fi
+
+research_terms:
+  - Market share
+  - Demographic analysis
+  - Audience insights
+  - Fan engagement
+  - Social media metrics
+  - Follower count
+  - Monthly listeners
+  - Engagement rate
+  - Virality
+  - Trend analysis
+  - Cross-promotion
+  - Collaboration patterns
+  - Genre crossover
+  - Artist development
+  - Breakout artist
+  - Emerging artist
+  - Legacy artist
+  - Catalog artist
+

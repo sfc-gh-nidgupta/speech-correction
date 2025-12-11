@@ -1,0 +1,6 @@
+name: Snowflake
+description: Expert assistant for Snowflake data platform questions
+icon: ❄️
+terms_file: terms.yaml
+knowledge_file: knowledge.md
+
