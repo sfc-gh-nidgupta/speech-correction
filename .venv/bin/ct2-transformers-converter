@@ -1,4 +1,4 @@
-#!/Users/nidgupta/projects/speech-correction/.venv/bin/python3.9
+#!/Users/kganesan/snowvation_project/speech-correction/.venv/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys
